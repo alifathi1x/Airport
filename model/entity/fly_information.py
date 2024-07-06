@@ -33,3 +33,4 @@ class FlyInformation:
     def get_destination(self):
         return self._destination
 
+
