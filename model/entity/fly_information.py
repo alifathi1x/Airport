@@ -8,7 +8,7 @@ class FlyInformation:
         self.destination = destination
         self.date_time = date_time
         self.status = status
-        self.outrane_fly = outrane_fly
+        self.outrange_fly = outrange_fly
 
     def get_id(self):
         return self._id
