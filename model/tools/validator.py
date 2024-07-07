@@ -5,3 +5,5 @@ def name_validator(name):
 def national_id_validator(national_id):
     return re.match("^[a-zA-Z]{0,10}$",national_id)
 
+def passport_validator(passport):
+    return re.match("^{0,9}$",passport)

@@ -1,14 +1,14 @@
 from model.tools.validator import *
 
 class FlyInformation:
-    def __init__(self,id,fly_number,direction,destination,date_time,outrange_fly,status=True,):
+    def __init__(self,id,fly_number,direction,destination,date_time,out_range_fly,status=True,):
         self.id = None
         self.fly_number = fly_number
         self.direction = direction
         self.destination = destination
         self.date_time = date_time
         self.status = status
-        self.outrange_fly = outrange_fly
+        self.out_range_fly = out_range_fly
 
     def get_id(self):
         return self._id
@@ -46,6 +46,30 @@ class FlyInformation:
             self._date_time = date_time
         else:
             raise ValueError("Invalid date time")
+
+    def get_out_range_fly(self):
+        return self._get_out_range_fly
+    def set_out_range_fly(self,out_range_fly):
+        if out_range_fly == True:
+            self._out_range_fly = out_range_fly
+        else:
+            raise ValueError("Invalid out_range_fly")
+
+    def get_status(self):
+        return self._status
+    def set_status(self, status):
+        if isinstance(status,bool):
+            self._status = status
+        else:
+            raise ValueError("Invalid status")
+
+
+    fly_number = property(get_fly_number,set_fly_number)
+    direction = property(get_direction,set_direction)
+    destination = property(get_destination,set_destination)
+    date_time = property(get_date_time,set_date_time)
+    out_range_fly = property(get_out_range_fly,set_out_range_fly)
+    status = property(get_status,set_status)
 
 
 
