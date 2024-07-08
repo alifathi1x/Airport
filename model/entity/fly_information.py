@@ -18,7 +18,7 @@ class FlyInformation:
     def get_fly_number(self):
         return self._fly_number
     def set_fly_number(self,fly_number):
-        if isinstance(fly_number,bool):
+        if isinstance(fly_number,int):
             self._fly_number = fly_number
         else:
             raise ValueError("Invalid fly_number")
@@ -50,7 +50,7 @@ class FlyInformation:
     def get_out_range_fly(self):
         return self._get_out_range_fly
     def set_out_range_fly(self,out_range_fly):
-        if out_range_fly == True:
+        if isinstance(out_range_fly,bool):
             self._out_range_fly = out_range_fly
         else:
             raise ValueError("Invalid out_range_fly")
