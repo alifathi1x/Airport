@@ -1,13 +1,13 @@
 from model.tools.validator import *
 from sqlalchemy import column, Integer, String, Boolean, Column
 from sqlalchemy.orm import relationship
-from model.entity.base import Base
+from model.entity import *
 
 
 class CustomerInformation(Base):
     __tablename__ = "customer_information_tbl"
     _id = Column("id", Integer, primary_key=True, autoincrement=True)
-    _name = Column("name", String, nullable=False)
+    _name = Column("name", String(30), nullable=False)
     _birth_date = Column("BirthDate", Integer, nullable=False, unique=True)
     _national_id = Column("national ID", Integer, nullable=False, unique=True)
     _passport_number = Column("passport_ID", Integer, nullable=False, unique=True)

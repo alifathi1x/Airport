@@ -1,27 +1,29 @@
+from datetime import datetime
+
 from model.tools.validator import *
 from sqlalchemy import column, Integer, String, DateTime, Boolean, Column
 from sqlalchemy.orm import relationship
-from model.entity.base import Base
+from model.entity import *
 
 
 class FlyInformation(Base):
     __tablename__ = "fly_information_tbl"
-    id = Column("id", Integer, primary_key=True, autoincrement=True)
-    fly_number = Column("fly_number", Integer, nullable=False, unique=True)
-    direction = Column("direction", String(20), nullable=False)
-    destination = Column("destination", String(20), nullable=False)
-    date_time = Column("date_time", DateTime, nullable=False)
-    fly_type = Column("fly_type", Boolean, nullable=False)
-    status = Column("status", Boolean, nullable=False)
+    _id = Column("id", Integer, primary_key=True, autoincrement=True)
+    _fly_number = Column("fly_number", Integer, nullable=False, unique=True)
+    _direction = Column("direction", String(20), nullable=False)
+    _destination = Column("destination", String(20), nullable=False)
+    _date_time = Column("date_time", DateTime, nullable=False)
+    _fly_type = Column("fly_type", Boolean, nullable=False)
+    _status = Column("status", Boolean, nullable=False)
 
     def __init__(self, fly_number, direction, destination, date_time, fly_type, status):
-        self.id = None
-        self.fly_number = fly_number
-        self.direction = direction
-        self.destination = destination
-        self.date_time = date_time
-        self.status = status
-        self.fly_number = fly_type
+        self._id = None
+        self._fly_number = fly_number
+        self._direction = direction
+        self._destination = destination
+        self._date_time = date_time
+        self._fly_type = fly_type
+        self._status = status
 
     def get_id(self):
         return self._id
@@ -60,7 +62,7 @@ class FlyInformation(Base):
         return self._date_time
 
     def set_date_time(self, date_time):
-        if isinstance(date_time, int):
+        if isinstance(date_time, datetime):
             self._date_time = date_time
         else:
             raise ValueError("Invalid date time")
@@ -83,6 +85,7 @@ class FlyInformation(Base):
         else:
             raise ValueError("Invalid status")
 
+    id = property(get_id, set_id)
     fly_number = property(get_fly_number, set_fly_number)
     direction = property(get_direction, set_direction)
     destination = property(get_destination, set_destination)

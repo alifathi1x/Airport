@@ -1,14 +1,14 @@
-from sqlalchemy import create_engine, and_, or_
+﻿from sqlalchemy import create_engine, and_, or_
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import create_database, database_exists
 from model.entity.base import Base
 
-connection_string = "jdbc:mysql://localhost:3306"
+connection_string = "mysql+pymysql://root:root123@localhost:3306/air_line"
 if not database_exists(connection_string):
     create_database(connection_string)
 
 engine = create_engine(connection_string)
-Base.metadata.create_all(engine)
+Base.metadata.create_all(bind=engine)
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -29,7 +29,7 @@ class DataAccess:
         session.commit()
         session.refresh(entity)
         return entity
-
+    #todo برای پاک کردن ارور میزنه از دیتا بیس
     def remove(self, entity):
         session.delete(entity)
         session.commit()

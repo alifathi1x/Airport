@@ -2,10 +2,10 @@ from model.entity.customer_information import CustomerInformation
 from model.entity.fly_information import FlyInformation
 from sqlalchemy import column, Integer, String, Boolean, Column
 from sqlalchemy.orm import relationship
-from model.entity.base import Base
+from model.entity import *
 
 
-class TicketInformation(FlyInformation, CustomerInformation):
+class TicketInformation(Base):
     __tablename__ = "ticket_information_tbl"
     _id = Column("id", Integer, primary_key=True, autoincrement=True)
     _seat_number = Column("seat_number", Integer, nullable=False, unique=True)
