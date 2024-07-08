@@ -1,3 +1,5 @@
+import datetime
+
 from model.tools.validator import *
 from sqlalchemy import column, Integer, String, DateTime, Boolean, Column
 from sqlalchemy.orm import relationship
@@ -60,7 +62,7 @@ class FlyInformation(Base):
         return self._date_time
 
     def set_date_time(self, date_time):
-        if isinstance(date_time, int):
+        if isinstance(date_time, datetime.datetime):
             self._date_time = date_time
         else:
             raise ValueError("Invalid date time")
