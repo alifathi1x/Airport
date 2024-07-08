@@ -1,5 +1,5 @@
 from model.tools.validator import *
-from sqlalchemy import column, Integer, String, Boolean, Column
+from sqlalchemy import column, Integer, String, Boolean, Column, DateTime
 from sqlalchemy.orm import relationship
 from model.entity import *
 
@@ -7,8 +7,8 @@ from model.entity import *
 class CustomerInformation(Base):
     __tablename__ = "customer_information_tbl"
     _id = Column("id", Integer, primary_key=True, autoincrement=True)
-    _name = Column("name", String(30), nullable=False)
-    _birth_date = Column("BirthDate", Integer, nullable=False, unique=True)
+    _name = Column("name", String(20), nullable=False)
+    _birth_date = Column("BirthDate", DateTime, nullable=False, unique=True)
     _national_id = Column("national ID", Integer, nullable=False, unique=True)
     _passport_number = Column("passport_ID", Integer, nullable=False, unique=True)
 
@@ -48,7 +48,7 @@ class CustomerInformation(Base):
         return self._birth_date
 
     def set_birth_date(self, birth_date):
-        if isinstance(birth_date, int):
+        if isinstance(birth_date, DateTime):
             self._birth_date = birth_date
         else:
             raise ValueError("Invalid Birthday Input")
