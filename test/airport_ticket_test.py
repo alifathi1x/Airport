@@ -1,10 +1,9 @@
-from datetime import datetime
 
 from model.da.da import DataAccess
-from model.entity.fly_information import *
+from model.entity.ticket_information import *
 
-fly = FlyInformation(5671,"shz","aaa",datetime.now(),True,True)
-fly_da = DataAccess(FlyInformation)
-fly_da.save(fly)
+ticket = TicketInformation(2,2)
+ticket_da = DataAccess(TicketInformation)
+ticket_da.save(ticket)
 
-print(fly)
+print(ticket)
