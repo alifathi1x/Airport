@@ -40,5 +40,6 @@ class TicketInformation(Base):
         else:
             raise ValueError("Invalid price")
 
+    id = property(get_id, set_id)
     seat_number = property(get_seat_number, set_seat_number)
     price = property(get_price, set_price)

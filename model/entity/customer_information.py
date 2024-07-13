@@ -71,6 +71,7 @@ class CustomerInformation(Base):
         else:
             raise ValueError("Invalid Passport Number")
 
+    id = property(get_id,set_id)
     name = property(get_name, set_name)
     family = property(get_family, set_family)
     birth_date = property(get_birth_date, set_birth_date)
