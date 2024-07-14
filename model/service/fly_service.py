@@ -32,9 +32,9 @@ class FlyService:
         return fly_da.find_all()
 
     @staticmethod
-    def find_by_id(fly_information):
+    def find_by_id(id):
         fly_da = DataAccess(FlyInformation)
-        return fly_da.find_by_id(fly_information)
+        return fly_da.find_by_id(id)
 
     @staticmethod
     def find_by_fly_number(fly_number):

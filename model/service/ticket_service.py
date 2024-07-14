@@ -32,9 +32,9 @@ class TicketService:
         return ticket_da.find_all()
 
     @staticmethod
-    def find_by_id(ticket):
+    def find_by_id(id):
         ticket_da = DataAccess(TicketInformation)
-        return ticket_da.find_by_id(ticket)
+        return ticket_da.find_by_id(id)
 
     @staticmethod
     def find_by_seat_number(seat_number):

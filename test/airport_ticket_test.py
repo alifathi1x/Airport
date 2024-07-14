@@ -1,9 +1,9 @@
 
 from model.da.da import DataAccess
-from model.entity.ticket_information import *
+from model.entity.fly_information import *
 
-ticket = TicketInformation(2,2)
-ticket_da = DataAccess(TicketInformation)
-ticket_da.save(ticket)
+fly = FlyInformation(2222,"tehran","aaa",datetime.now(),True,True)
+fly_da = DataAccess(FlyInformation)
+fly_da.save(fly)
 
-print(ticket)
+print(fly)

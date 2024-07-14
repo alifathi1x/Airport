@@ -32,9 +32,9 @@ class CustomerService:
         return customer_da.find_all()
 
     @staticmethod
-    def find_by_id(customer):
+    def find_by_id(id):
         customer_da = DataAccess(CustomerInformation)
-        return customer_da.find_by_id(customer)
+        return customer_da.find_by_id(id)
 
     @staticmethod
     def find_by_name(name):
