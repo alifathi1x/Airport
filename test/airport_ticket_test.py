@@ -1,9 +1,10 @@
-
 from model.da.da import DataAccess
-from model.entity.fly_information import *
+from model.entity.customer_information import *
 
-fly = FlyInformation(2222,"tehran","aaa",datetime.now(),True,True)
-fly_da = DataAccess(FlyInformation)
-fly_da.save(fly)
+d = date(2023, 3, 2)
 
-print(fly)
+customer = CustomerInformation("aaaa", "tehran",date.day, "1231231231", 111111111,)
+customer_da = DataAccess(CustomerInformation)
+customer_da.save(customer)
+
+print(customer)

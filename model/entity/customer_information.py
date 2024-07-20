@@ -66,7 +66,7 @@ class CustomerInformation(Base):
         return self._passport_number
 
     def set_passport_number(self, passport_number):
-        if passport_validator(passport_number):
+        if isinstance(passport_number, int):
             self._passport_number = passport_number
         else:
             raise ValueError("Invalid Passport Number")

@@ -15,9 +15,9 @@ class CustomerController:
             return False, f"{e}"
 
     @staticmethod
-    def edit(id,name, family, birth_date, national_id, passport_number):
+    def edit(id,name, family, birth_date, national_id, passport_number,):
         try:
-            customer = CustomerInformation("ali","fathi","","a77777",2222222)
+            customer = CustomerInformation("ali","fathi")
             customer.id = id
             CustomerService.edit(customer)
             Logger.info(f"customer Edited - {customer}")

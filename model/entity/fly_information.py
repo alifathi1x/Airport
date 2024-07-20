@@ -12,7 +12,7 @@ class FlyInformation(Base):
     _fly_number = Column("fly_number", Integer, nullable=False, unique=True)
     _direction = Column("direction", String(20), nullable=False)
     _destination = Column("destination", String(20), nullable=False)
-    _date_time = Column("date_time", DateTime, nullable=False)
+    _date_time = Column("date_time", Integer, nullable=False)
     _fly_type = Column("fly_type", Boolean, nullable=False)
     _status = Column("status", Boolean, nullable=False)
 
@@ -62,7 +62,7 @@ class FlyInformation(Base):
         return self._date_time
 
     def set_date_time(self, date_time):
-        if isinstance(date_time, datetime):
+        if isinstance(date_time, int):
             self._date_time = date_time
         else:
             raise ValueError("Invalid date time")
