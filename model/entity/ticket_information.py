@@ -2,7 +2,7 @@ from model.entity.customer_information import CustomerInformation
 from model.entity.fly_information import FlyInformation
 from sqlalchemy import column, Integer, String, Boolean, Column
 from sqlalchemy.orm import relationship
-from model.entity import *
+from model.entity.base import Base
 
 
 class TicketInformation(Base):
@@ -12,9 +12,9 @@ class TicketInformation(Base):
     _price = Column("price", Integer, nullable=False)
 
     def __init__(self, seat_number, price):
-        self.id = None
-        self.seat_number = seat_number
-        self.price = price
+        self._id = None
+        self._seat_number = seat_number
+        self._price = price
 
     def get_id(self):
         return self._id

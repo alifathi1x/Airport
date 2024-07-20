@@ -6,7 +6,7 @@ class CustomerController:
     @staticmethod
     def save(name, family, birth_date, national_id, passport_number):
         try:
-            customer = CustomerInformation("ali","fathi")
+            customer = CustomerInformation("ali","fathi","","aaa",1111111,)
             CustomerService.save(customer)
             Logger.info(f"customer Saved - {customer}")
             return True, customer
@@ -17,7 +17,7 @@ class CustomerController:
     @staticmethod
     def edit(id,name, family, birth_date, national_id, passport_number):
         try:
-            customer = CustomerInformation("ali","fathi")
+            customer = CustomerInformation("ali","fathi","","a77777",2222222)
             customer.id = id
             CustomerService.edit(customer)
             Logger.info(f"customer Edited - {customer}")
@@ -35,6 +35,18 @@ class CustomerController:
         except Exception as e:
             Logger.error(f"{e}")
             return False, f"{e}"
+
+    @staticmethod
+    def remove(name):
+        try:
+            customer = CustomerService.remove(name)
+            Logger.info(f"customer removed - {customer}")
+            return True, customer
+        except Exception as e:
+            Logger.info(f"{e}")
+            return False, f"{e}"
+
+
 
 
     @staticmethod

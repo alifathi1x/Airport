@@ -1,24 +1,24 @@
+from datetime import date
 from model.tools.validator import *
-from sqlalchemy import column, Integer, String, Boolean, Column, DateTime
-from sqlalchemy.orm import relationship
-from model.entity import *
+from sqlalchemy import Integer, String, Column, Date
+from model.entity.base import Base
 
 
 class CustomerInformation(Base):
     __tablename__ = "customer_information_tbl"
     _id = Column("id", Integer, primary_key=True, autoincrement=True)
     _name = Column("name", String(20), nullable=False)
-    _birth_date = Column("BirthDate", DateTime, nullable=False, unique=True)
+    _birth_date = Column("BirthDate", Date, nullable=False, unique=True)
     _national_id = Column("national ID", Integer, nullable=False, unique=True)
-    _passport_number = Column("passport_ID", Integer, nullable=False, unique=True)
+    _passport_number = Column("passport_number", Integer, nullable=False, unique=True)
 
     def __init__(self, name, family, birth_date, national_id, passport_number):
-        self.id = None
-        self.name = name
-        self.family = family
-        self.birth_date = birth_date
-        self.national_id = national_id
-        self.passport_number = passport_number
+        self._id = None
+        self._name = name
+        self._family = family
+        self._birth_date = birth_date
+        self._national_id = national_id
+        self._passport_number = passport_number
 
     def get_id(self):
         return self._id
@@ -48,7 +48,7 @@ class CustomerInformation(Base):
         return self._birth_date
 
     def set_birth_date(self, birth_date):
-        if isinstance(birth_date, DateTime):
+        if isinstance(birth_date, date):
             self._birth_date = birth_date
         else:
             raise ValueError("Invalid Birthday Input")
@@ -66,7 +66,7 @@ class CustomerInformation(Base):
         return self._passport_number
 
     def set_passport_number(self, passport_number):
-        if isinstance(passport_number, int) and passport_validator(passport_number):
+        if passport_validator(passport_number):
             self._passport_number = passport_number
         else:
             raise ValueError("Invalid Passport Number")

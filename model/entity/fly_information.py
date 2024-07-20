@@ -3,7 +3,7 @@ from datetime import datetime
 from model.tools.validator import *
 from sqlalchemy import column, Integer, String, DateTime, Boolean, Column
 from sqlalchemy.orm import relationship
-from model.entity import *
+from model.entity.base import Base
 
 
 class FlyInformation(Base):
