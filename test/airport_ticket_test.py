@@ -1,9 +1,6 @@
 from model.da.da import DataAccess
 from model.entity.fly_information import *
+from controller.fly_controller import FlyController
 
-
-fly = FlyInformation(1,"teh","esfhana",datetime.now(),True,True)
-fly_da = DataAccess(FlyInformation)
-fly_da.save(fly)
-
-print(fly)
+controller = FlyController()
+print(controller.save(6,"teh","shiraz",datetime.now(),True,True))
