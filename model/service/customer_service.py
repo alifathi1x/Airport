@@ -1,16 +1,17 @@
 from controller.exeptions import CustomerNotFoundError
 from model.da.da import DataAccess
 from model.entity.customer_information import CustomerInformation
+from model.tools.decorator import *
 
 class CustomerService:
-    @staticmethod
-    def save(customer):
+    @classmethod
+    def save(cls,customer):
         customer_da = DataAccess(CustomerInformation)
         customer_da.save(customer)
         return customer
 
-    @staticmethod
-    def edit(customer):
+    @classmethod
+    def edit(cls,customer):
         customer_da = DataAccess(CustomerInformation)
         if customer_da.find_by_id(customer.id):
             customer_da.edit(customer)
@@ -18,32 +19,31 @@ class CustomerService:
         else:
             raise CustomerNotFoundError()
 
-    @staticmethod
-    def remove(customer):
+    @classmethod
+    def remove(cls,customer):
         customer_da = DataAccess(CustomerInformation)
-        if customer_da.find_by_id(customer):
-            return customer_da.remove(customer)
+        if customer_da.find_by_id(customer.id):
+            return customer_da.remove(id)
         else:
             raise CustomerNotFoundError()
 
-    @staticmethod
-    def find_all():
+    @classmethod
+    def find_all(cls):
         customer_da = DataAccess(CustomerInformation)
         return customer_da.find_all()
 
-    @staticmethod
-    def find_by_id(id):
+    @classmethod
+    def find_by_id(cls,id):
         customer_da = DataAccess(CustomerInformation)
         return customer_da.find_by_id(id)
 
-    @staticmethod
-    def find_by_name(name):
+
+    @classmethod
+    def find_by_family(cls, family, customer):
         customer_da = DataAccess(CustomerInformation)
-        return customer_da.find_by(CustomerInformation.name == name)
+        return customer_da.find_by(customer.family == family)
 
-    @staticmethod
-    def find_by_family(family):
+    @classmethod
+    def find_by_name(cls,name,customer):
         customer_da = DataAccess(CustomerInformation)
-        return customer_da.find_by(CustomerInformation.family == family)
-
-
+        return customer_da.find_by(customer.name == name)

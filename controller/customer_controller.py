@@ -1,84 +1,44 @@
 from model.entity.customer_information import CustomerInformation
 from model.service.customer_service import CustomerService
-from model.tools.logger import Logger
-
+from model.tools.decorator import exception_handling
 class CustomerController:
-    @staticmethod
-    def save(name, family, birth_date, national_id, passport_number):
-        try:
-            customer = CustomerInformation("ali","fathi","","aaa",1111111,)
-            CustomerService.save(customer)
-            Logger.info(f"customer Saved - {customer}")
-            return True, customer
-        except Exception as e:
-            Logger.error(f"{e}")
-            return False, f"{e}"
+    @classmethod
+    @exception_handling
+    def save(cls,name,family,national_id,passport_number,birth_date):
+        customer = CustomerInformation(name,family,national_id,passport_number,birth_date)
+        return True, CustomerService.save(customer)
 
-    @staticmethod
-    def edit(id,name, family, birth_date, national_id, passport_number,):
-        try:
-            customer = CustomerInformation("ali","fathi")
-            customer.id = id
-            CustomerService.edit(customer)
-            Logger.info(f"customer Edited - {customer}")
-            return True, customer
-        except Exception as e:
-            Logger.error(f"{e}")
-            return False, f"{e}"
+    @classmethod
+    @exception_handling
+    def edit(cls,name,family,national_id,passport_number,birth_date):
+        customer = CustomerInformation(name,family,national_id,passport_number,birth_date)
+        customer.id = id
+        return True, CustomerService.edit(customer)
 
-    @staticmethod
-    def remove(id):
-        try:
-            customer = CustomerService.remove(id)
-            Logger.info(f"customer ID Removed - {customer}")
-            return True, customer
-        except Exception as e:
-            Logger.error(f"{e}")
-            return False, f"{e}"
+    @classmethod
+    @exception_handling
+    def remove(cls,name,family,national_id,passport_number,birth_date):
+        customer = CustomerInformation(name,family,national_id,passport_number,birth_date)
+        return True, CustomerService.remove(customer)
 
-    @staticmethod
-    def remove(name):
-        try:
-            customer = CustomerService.remove(name)
-            Logger.info(f"customer removed - {customer}")
-            return True, customer
-        except Exception as e:
-            Logger.info(f"{e}")
-            return False, f"{e}"
+    @classmethod
+    @exception_handling
+    def find_all(cls):
+        return True, CustomerService.find_all()
 
 
+    @classmethod
+    @exception_handling
+    def find_by_id(cls,id):
+        return True, CustomerService.find_by_id(id)
 
+    @classmethod
+    @exception_handling
+    def find_by_name(cls,name):
+        return True, CustomerService.find_by_name(name)
 
-    @staticmethod
-    def findAll():
-        try:
-            customer_list = CustomerService.find_all()
-            Logger.info(f"customer findAll()")
-            return True, customer_list
-        except Exception as e:
-            Logger.error(f"{e}")
-            return False, f"{e}"
-
-
-    @staticmethod
-    def find_by_name(name):
-        try:
-            customer = CustomerService.find_by_name(name)
-            Logger.info(f"customer find by name - {customer}")
-            return True, customer
-        except Exception as e:
-            Logger.error(f"{e}")
-            return False, f"{e}"
-
-    @staticmethod
-    def find_by_family(family):
-        try:
-            customer = CustomerService.find_by_family(family)
-            Logger.info(f"customer find by family - {customer}")
-            return True, customer
-        except Exception as e:
-            Logger.error(f"{e}")
-            return False, f"{e}"
-
-
+    @classmethod
+    @exception_handling
+    def find_by_family(cls,family):
+        return True, CustomerService.find_by_family(family)
 
