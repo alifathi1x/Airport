@@ -19,6 +19,7 @@ class CustomerView:
                                 [20,100,100,100,100,100,100,100],300, 100,
                                     self.customer_table_click)
 
+        self.total = TextWithLabel(self.win,"name",20,20)
         self.win.bind()
         self.win.mainloop()
 
