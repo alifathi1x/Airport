@@ -1,7 +1,4 @@
-from model.entity.customer_information import CustomerInformation
-from model.entity.fly_information import FlyInformation
-from sqlalchemy import column, Integer, String, Boolean, Column
-from sqlalchemy.orm import relationship
+from sqlalchemy import Integer, Column
 from model.entity.base import Base
 
 
