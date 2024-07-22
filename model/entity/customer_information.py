@@ -8,8 +8,8 @@ class CustomerInformation(Base):
     __tablename__ = "customer_information_tbl"
     _id = Column("id", Integer, primary_key=True, autoincrement=True)
     _name = Column("name", String(20), nullable=False)
-    _birth_date = Column("BirthDate", Date, nullable=False)
-    _national_id = Column("national ID", Integer, nullable=False, unique=True)
+    _birth_date = Column("birth_date", Date, nullable=False)
+    _national_id = Column("national_id", Integer, nullable=False, unique=True)
     _passport_number = Column("passport_number", Integer, nullable=False, unique=True)
 
     def __init__(self, name, family, birth_date, national_id, passport_number):
