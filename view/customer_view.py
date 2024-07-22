@@ -1,26 +1,25 @@
-import tkinter as tk
-from tkinter import messagebox
+from view.table import Table
+from model.da.da import DataAccess
+from model.entity.customer_information import CustomerInformation
+from view.label_text import TextWithLabel
+from tkinter import *
 
 class CustomerView:
+    def customer_table_click(self,row):
+        CustomerInformation = self.customer_da.find_by_id(int(row[0]))
+        print(CustomerInformation)
+
     def __init__(self):
-        win = tk.Tk()
-        win.title("Airport")
-        win.geometry("600x600")
-        tk.Label(win, text="Customer Information", font="Arial 12 bold").place(x=200, y=30)
-        tk.Label(win, text="نام", font="Arial 15 bold").place(x=250, y=70)
-        tk.Entry(win, width=12, font="arial 10 bold", bd=3).place(x=300, y=70)
-        tk.Label(win, text="نام خانوادگی", font="Arial 15 bold").place(x=230, y=130)
-        tk.Entry(win, width=12, font="arial 10 bold", bd=3).place(x=340, y=130)
-        tk.Label(win, text="تاریخ تولد", font="Arial 15 bold").place(x=240, y=200)
-        tk.Entry(win, width=12, font="arial 10 bold", bd=3).place(x=340, y=200)
-        tk.Label(win, text="کد ملی", font="Arial 15 bold").place(x=250, y=270)
-        tk.Entry(win, width=12, font="arial 10 bold", bd=3).place(x=350, y=270)
-        tk.Label(win, text="شمار پاسپورت", font="Arial 15 bold").place(x=230, y=330)
-        tk.Entry(win, width=12, font="arial 10 bold", bd=3).place(x=340, y=330)
-        tk.Button(win, text="save", font="Arial 15 bold", activebackground="white", command="save",
-                  background="dark blue").place(x=300, y=500)
-        tk.Button(win, text="exit", font="Arial 15 bold", activebackground="white", command=exit,
-                  background="dark blue").place(x=370, y=500)
+        self.customer_da = DataAccess(CustomerInformation)
+
+        self.win = Tk()
+        self.win.title("Customer View")
+        self.win.geometry("1000x1000")
+        self.customer_table = Table(self.win,["id","name","family","birth_date","national_id","passport_number"],
+                                [20,100,100,100,100,100,100,100],300, 100,
+                                    self.customer_table_click)
+
+        self.win.bind()
+        self.win.mainloop()
 
 
-        win.mainloop()
