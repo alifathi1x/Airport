@@ -1,27 +1,37 @@
-import tkinter as tk
-from tkinter import messagebox
 from tkinter import *
-
-win = tk.Tk()
-win.title("Airport")
-win.geometry("600x600")
-tk.Label(win, text="Fly Information",font="Arial 12 bold").place(x=200,y=30)
-tk.Label(win, text="شماره پرواز",font="Arial 15 bold").place(x=250,y=70)
-tk.Entry(win, width=12, font="arial 10 bold",bd=3).place(x=350,y=70)
-tk.Label(win, text="مبدا پرواز",font="Arial 15 bold").place(x=230,y=130)
-tk.Entry(win, width=12, font="arial 10 bold",bd=3).place(x=340,y=130)
-tk.Label(win, text="مقصد پرواز",font="Arial 15 bold").place(x=240,y=200)
-tk.Entry(win, width=12, font="arial 10 bold",bd=3).place(x=340,y=200)
-tk.Label(win, text="تاریخ پرواز",font="Arial 15 bold").place(x=250,y=270)
-tk.Entry(win, width=12, font="arial 10 bold",bd=3).place(x=350,y=270)
-tk.Label(win, text="پرواز خارجی-داخلی",font="Arial 15 bold").place(x=230,y=330)
-tk.Entry(win, width=12, font="arial 10 bold",bd=3).place(x=390,y=330)
-tk.Checkbutton(win,text="خارجی").place(x=500,y=330)
-tk.Checkbutton(win,text="داخلی").place(x=500,y=350)
-tk.Button(win, text="save",font="Arial 15 bold",activebackground="white",command="save",background="dark blue").place(x=300,y=500)
-tk.Button(win, text="exit",font="Arial 15 bold",activebackground="white",command=exit,background="dark blue").place(x=370,y=500)
+from model.entity.fly_information import FlyInformation
+from controller.fly_controller import FlyController
+from model.da.da import DataAccess
+from view.table import Table
+from view.label_text import TextWithLabel
 
 
+class FlyView:
+    def fly_table_click(self, row):
+        FlyInformation = self.fly_da.find_by_id(int(row[0]))
+        print(FlyInformation)
+
+    def remove(self):
+        FlyController.remove(FlyInformation)
+
+    def save(self):
+       FlyController.save(FlyInformation)
 
 
-win.mainloop()
+    def __init__(self):
+        self.fly_da = DataAccess(FlyInformation)
+        self.win = Tk()
+        self.win.title("Fly View")
+        self.win.geometry("1000x1000")
+        self.fly_table = Table(self.win,["fly_number","direction","destination","date_time","fly_type","status"]
+                               ,[20,100,100,100,100,100,100,100],300,100,self.fly_table_click)
+
+        self.total = TextWithLabel(self.win,"fly_number",20,20)
+        self.total = TextWithLabel(self.win,"direction",20,50)
+        self.total = TextWithLabel(self.win,"destination",20,80)
+        self.total = TextWithLabel(self.win,"date_time",20,110)
+        self.total = TextWithLabel(self.win,"fly_type",20,140)
+        self.total = TextWithLabel(self.win,"status",20,170)
+        self.button = Button(self.win,text="Delete",command=self.remove).place(x=200,y=200)
+        self.button = Button(self.win,text="save",command=self.save).place(x=160,y=200)
+        self.win.mainloop()

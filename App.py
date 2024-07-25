@@ -1,3 +1,4 @@
-from view.customer_view import CustomerView
 
-ui = CustomerView()
+from view.fly_view import FlyView
+
+ui = FlyView()
