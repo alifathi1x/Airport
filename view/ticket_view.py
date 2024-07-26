@@ -1,16 +1,26 @@
-import tkinter as tk
-from tkinter import messagebox
+from tkinter import *
+from model.entity.ticket_information import TicketInformation
+from model.da.da import DataAccess
+from model.service.ticket_service import TicketService
+from view.table import Table
+from view.label_text import TextWithLabel
 
-win = tk.Tk()
-win.title("Airport")
-win.geometry("600x600")
-tk.Label(win, text="Ticket Information",font="Arial 12 bold").place(x=200,y=30)
-tk.Label(win, text="شماره صندلی",font="Arial 15 bold").place(x=250,y=70)
-tk.Entry(win, width=12, font="arial 10 bold",bd=3).place(x=350,y=70)
-tk.Label(win, text="قیمت",font="Arial 15 bold").place(x=300,y=130)
-tk.Entry(win, width=12, font="arial 10 bold",bd=3).place(x=340,y=130)
-tk.Button(win, text="save",font="Arial 15 bold",activebackground="white",command="save",background="dark blue").place(x=300,y=500)
-tk.Button(win, text="exit",font="Arial 15 bold",activebackground="white",command=exit,background="dark blue").place(x=370,y=500)
+class TicketView:
+    def ticket_table_click(self,row):
+        TicketInformation = self.ticket_da.find_by_id(int(row[0]))
+        print(TicketInformation)
 
 
-win.mainloop()
+    def __init__(self):
+        self.ticket_da = DataAccess(TicketInformation)
+        self.win = Tk()
+        self.win.title("Ticket_View")
+        self.win.geometry("1000x1000")
+        self.ticket_table = Table(self.win,["seat_number","price"],[100,100],300,100,self.ticket_table_click)
+        self.total = TextWithLabel(self.win,"seat_number",20,20)
+        self.total = TextWithLabel(self.win,"price",20,50)
+        self.button = Button(self.win,text="save").place(x=200,y=200)
+        self.button = Button(self.win,text="delete").place(x=150,y=200)
+        self.win.mainloop()
+
+

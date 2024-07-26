@@ -1,4 +1,4 @@
 
-from view.fly_view import FlyView
+from view.ticket_view import TicketView
+ui = TicketView()
 
-ui = FlyView()

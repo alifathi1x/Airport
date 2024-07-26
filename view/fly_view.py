@@ -13,9 +13,11 @@ class FlyView:
 
     def remove(self):
         FlyController.remove(FlyInformation)
+        #to do: balad nistam
 
     def save(self):
        FlyController.save(FlyInformation)
+        #to do: balad nistam
 
 
     def __init__(self):
