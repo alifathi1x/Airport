@@ -2,6 +2,7 @@ from view.table import Table
 from model.da.da import DataAccess
 from model.entity.customer_information import CustomerInformation
 from controller.customer_controller import CustomerController
+from model.service.customer_service import CustomerService
 from view.label_text import TextWithLabel
 from tkinter import *
 
@@ -13,9 +14,11 @@ class CustomerView:
     def remove(self,name,family,birth_date,national_id,passport_number):
         customer = CustomerInformation(name,family,birth_date,national_id,passport_number)
         CustomerController.remove(customer)
+        #to do: balad nistam
 
     def save(self):
-        CustomerController.save(CustomerInformation)
+        customer = CustomerService.remove(CustomerInformation)
+        #to do: balad nistam
 
 
 

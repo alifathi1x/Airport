@@ -11,6 +11,9 @@ class TicketView:
         print(TicketInformation)
 
 
+    # def save: balad nistam
+    #def remove : balad nistam
+
     def __init__(self):
         self.ticket_da = DataAccess(TicketInformation)
         self.win = Tk()
