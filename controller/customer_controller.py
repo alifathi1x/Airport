@@ -4,20 +4,20 @@ from model.tools.decorator import exception_handling
 class CustomerController:
     @classmethod
     @exception_handling
-    def save(cls,name,family,national_id,passport_number,birth_date):
+    def save(cls,name,family,birth_date,national_id,passport_number):
         customer = CustomerInformation(name,family,national_id,passport_number,birth_date)
         return True, CustomerService.save(customer)
 
     @classmethod
     @exception_handling
-    def edit(cls,name,family,national_id,passport_number,birth_date):
+    def edit(cls,name,family,birth_date,national_id,passport_number):
         customer = CustomerInformation(name,family,national_id,passport_number,birth_date)
         customer.id = id
         return True, CustomerService.edit(customer)
 
     @classmethod
     @exception_handling
-    def remove(cls,name,family,national_id,passport_number,birth_date):
+    def remove(cls,name,family,birth_date,national_id,passport_number):
         customer = CustomerInformation(name,family,national_id,passport_number,birth_date)
         return True, CustomerService.remove(customer)
 
