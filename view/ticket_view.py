@@ -1,7 +1,8 @@
 from tkinter import *
+import tkinter.messagebox as msg
 from model.entity.ticket_information import TicketInformation
 from model.da.da import DataAccess
-from model.service.ticket_service import TicketService
+from controller.ticket_controller import TicketController
 from view.table import Table
 from view.label_text import TextWithLabel
 
@@ -10,9 +11,21 @@ class TicketView:
         TicketInformation = self.ticket_da.find_by_id(int(row[0]))
         print(TicketInformation)
 
+    def remove(self):
+        TicketController.remove(TicketInformation)
+        msg.showinfo("remove",f"Ticket has been removed")
 
-    # def save: balad nistam
-    #def remove : balad nistam
+    def save(self):
+        status, result = TicketController.save(TicketInformation)
+        if status:
+            msg.showinfo("save", f"Ticket has been saved {result}")
+        else:
+            msg.showinfo("Error", f"Ticket could not be saved {result}")
+
+
+
+
+
 
     def __init__(self):
         self.ticket_da = DataAccess(TicketInformation)

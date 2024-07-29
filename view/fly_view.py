@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.messagebox as msg
 from model.entity.fly_information import FlyInformation
 from controller.fly_controller import FlyController
 from model.da.da import DataAccess
@@ -12,13 +13,16 @@ class FlyView:
         print(FlyInformation)
 
     def remove(self):
-        FlyController.remove(FlyInformation)
-        #to do: balad nistam
+        status, result = FlyController.remove(FlyInformation)
+        msg.showinfo("remove",f"Fly Information has been removed {result}")
+
 
     def save(self):
-       FlyController.save(FlyInformation)
-        #to do: balad nistam
-
+        status, result = FlyController.save(FlyInformation)
+        if status:
+            msg.showinfo("save",f"Fly Information has been saved {result}")
+        else:
+            msg.showinfo("Error",f"Fly Information has been saved {result}")
 
     def __init__(self):
         self.fly_da = DataAccess(FlyInformation)
