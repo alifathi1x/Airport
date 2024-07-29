@@ -43,7 +43,7 @@ class CustomerView:
         self.total = TextWithLabel(self.win,"national_id",20,110)
         self.total = TextWithLabel(self.win,"passport",20,140)
         self.button = Button(self.win,text="save",command=self.save).place(x=160,y=200)
-        self.button = Button(self.win,text="remoeve",command=self.remove).place(x=100,y=200)
+        self.button = Button(self.win,text="remove",command=self.remove).place(x=100,y=200)
         self.win.bind()
         self.win.mainloop()
 
